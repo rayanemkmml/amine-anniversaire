@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joyeux Anniversaire Amine 🎉</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+    overflow-x: hidden;
+}
+
+/* 🌊 SECTIONS */
+section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* 🧊 GLASS CARD */
+.card {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255,255,255,0.12);
+    border-radius: 28px;
+    padding: 40px;
+    max-width: 800px;
+    width: 100%;
+    color: white;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    animation: fadeUp 1.2s ease forwards;
+}
+
+.card h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+/* ✨ ANIMATION */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* 🎈 BALLOONS */
+.balloon {
+    position: fixed;
+    bottom: -120px;
+    width: 48px;
+    height: 64px;
+    border-radius: 50%;
+    animation: rise 16s linear infinite, sway 4s ease-in-out infinite;
+    z-index: 3;
+}
+.balloon::after {
+    content:"";
+    position:absolute;
+    width:2px;
+    height:40px;
+    background:#fff;
+    left:50%;
+    top:64px;
+}
+@keyframes rise {
+    to { transform: translateY(-140vh); }
+}
+@keyframes sway {
+    50% { margin-left: 20px; }
+}
+.red{background:#ff4d4d;}
+.yellow{background:#ffd700;}
+.black{background:#111;}
+
+/* 💖 HEARTS */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 18px;
+    animation: heartUp 9s linear infinite;
+    z-index: 4;
+}
+@keyframes heartUp {
+    to { transform: translateY(-120vh) scale(1.6); opacity:0; }
+}
+
+/* 🎆 FIREWORK */
+.firework {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: explode 1.4s ease-out forwards;
+    z-index: 999;
+}
+@keyframes explode {
+    to { transform: translate(var(--x), var(--y)); opacity:0; }
+}
+
+/* 🎵 MUSIC */
+.music-btn {
+    position: fixed;
+    bottom: 18px;
+    right: 18px;
+    padding: 12px 20px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.9);
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+/* 📱 MOBILE */
+@media (max-width:600px) {
+    .card { padding: 28px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIQUE -->
+<audio id="music" loop>
+  <source src="https://www.soundjay.com/happy/happy-birthday-song-02.mp3">
+</audio>
+<div class="music-btn" onclick="document.getElementById('music').play()">🎵 Musique</div>
+
+<script>
+/* 🎈 BALLOONS */
+["red","yellow","black","red","yellow"].forEach(c=>{
+ let b=document.createElement("div");
+ b.className="balloon "+c;
+ b.style.left=Math.random()*100+"vw";
+ document.body.appendChild(b);
+});
+
+/* 💖 HEARTS */
+setInterval(()=>{
+ let h=document.createElement("div");
+ h.className="heart";
+ h.innerHTML="💖";
+ h.style.left=Math.random()*100+"vw";
+ document.body.appendChild(h);
+ setTimeout(()=>h.remove(),9000);
+},700);
+
+/* 🎆 FINAL FIREWORK */
+function firework(){
+ for(let i=0;i<36;i++){
+  let f=document.createElement("div");
+  f.className="firework";
+  f.style.left=window.innerWidth/2+"px";
+  f.style.top=window.innerHeight/3+"px";
+  let a=Math.random()*2*Math.PI;
+  let r=120+Math.random()*100;
+  f.style.setProperty("--x",Math.cos(a)*r+"px");
+  f.style.setProperty("--y",Math.sin(a)*r+"px");
+  f.style.background=`hsl(${Math.random()*360},100%,60%)`;
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),1400);
+ }
+}
+setTimeout(firework,4000);
+</script>
+
+<!-- SECTIONS -->
+<section>
+  <div class="card">
+    <h1>🎂 Joyeux Anniversaire Amine</h1>
+    <p>16 ans • 23 février 🇧🇪<br><br>
+    Une nouvelle étape. Un nouvel avenir.  
+    Aujourd’hui, tout est pour toi ✨</p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h1>🇧🇪 Belgique</h1>
+    <p>
+      Plus qu’un pays.<br>
+      Une fierté.<br>
+      Un endroit où ton cœur se sent chez lui 💙
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h1>💖 Pour toi</h1>
+    <p>
+      Amine,<br><br>
+      Tu comptes vraiment.<br>
+      Tu mérites le meilleur, aujourd’hui et demain.<br>
+      Ne doute jamais de ta valeur.
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="card">
+    <h1>🎆 Profite à fond</h1>
+    <p>Joyeux anniversaire Amine 🎉🇧🇪</p>
+  </div>
+</section>
+
+</body>
+</html>
